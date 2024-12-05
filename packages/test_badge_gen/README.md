@@ -71,7 +71,7 @@ The gen command generates a badge from the specified lcov.info file.
    badge-test gen --in=lcov.info --out=badges/test_coverage.svg
    ```
    This generates a badge file at the specified output path.
-   ![Coverage](docs/coverage_badge.svg)
+   ![Coverage](doc/coverage_badge.svg)
 
 3. Error Handling: If the input file is missing or invalid, the command will prompt an error message:
 
