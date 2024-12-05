@@ -11,12 +11,9 @@ environment:
 dependencies:
   args: ^2.6.0
   ansicolor: ^2.0.3
-  resource_portable: ^3.1.0
   dart_console: ^4.1.1
-  recase: ^4.1.0
-  archive: ^3.6.1
   path: ^1.9.0
-  http: ^1.2.2
 
 dev_dependencies:
   test: ^1.21.0
+  flutter_lints: ^3.0.0
