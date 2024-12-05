@@ -11,7 +11,10 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 # m_cli_core
+![pub package](https://img.shields.io/pub/v/m_cli_core.svg?label=pub&color=blue)
+
 A Dart package used by the test_badge_gen
+
 ## Running Tests 🧪
 
 To run all unit tests:

@@ -11,8 +11,9 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 # test_badge_gen
-**Test Badge Coverage ** is a simple command-line tool for generating test coverage badges in SVG format from an `lcov.info` file. 
+![pub package](https://img.shields.io/pub/v/test_badge_gen.svg?label=pub&color=blue) ![Coverage](coverage_badge.svg)
 
+**Test Badge Coverage ** is a simple command-line tool for generating test coverage badges in SVG format from an `lcov.info` file.
 ---
 
 ## Features
