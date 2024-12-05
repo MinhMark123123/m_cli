@@ -63,12 +63,16 @@ abstract class BaseCommand extends Command {
   /// 4. Displays a "thank you" message for using the command.
   @override
   Future<void> run() async {
-    ConsoleUtils.echoLine(messageLine: Texts.runningCommand("${_baseCommandName()}"));
+    ConsoleUtils.echoLine(
+      messageLine: Texts.runningCommand(_baseCommandName()),
+    );
     await onCommandExecuted();
     if (_descriptionEnding != null) {
       ConsoleUtils.echoLine(messageLine: _descriptionEnding!);
     }
-    ConsoleUtils.echoLine(messageLine: Texts.thanksForUsingCommand("${_baseCommandName()}"));
+    ConsoleUtils.echoLine(
+      messageLine: Texts.thanksForUsingCommand(_baseCommandName()),
+    );
   }
 
   String _baseCommandName() => invocation.replaceAll(" [arguments]", "");

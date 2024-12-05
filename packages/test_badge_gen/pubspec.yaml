@@ -1,5 +1,5 @@
 name: test_badge_gen
-description: cli help generate test badge coverage svg
+description: cli help generate test badge coverage svg support customize the input and output file path for generated badges.
 version: 0.0.1
 homepage: https://github.com/MinhMark123123/m_cli
 repository: https://github.com/MinhMark123123/m_cli

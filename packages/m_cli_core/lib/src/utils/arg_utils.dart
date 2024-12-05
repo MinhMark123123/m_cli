@@ -1,6 +1,6 @@
-
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
+
 /// Retrieves a value of a specific type [T] from the parsed command-line arguments.
 ///
 /// This function is used to extract and validate the value of a given command-line option
