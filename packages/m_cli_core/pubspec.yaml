@@ -1,6 +1,6 @@
 name: m_cli_core
 description: core cli command package non publish
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/MinhMark123123/m_cli
 repository: https://github.com/MinhMark123123/m_cli
 issue_tracker: https://github.com/MinhMark123123/m_cli/issues
