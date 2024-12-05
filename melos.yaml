@@ -1,5 +1,5 @@
 name: m_cli
-repository: ###PROJECT_REPOSITORY###
+repository:  https://github.com/MinhMark123123/m_cli
 
 packages:
   - packages/**

@@ -1,4 +1,0 @@
-# melos_managed_dependency_overrides: m_cli_core
-dependency_overrides:
-  m_cli_core:
-    path: ../m_cli_core
