@@ -1,0 +1,21 @@
+name: m_cli_core
+description: core cli command package non publish
+version: 0.0.1
+homepage:
+publish_to: none
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  args: ^2.6.0
+  ansicolor: ^2.0.3
+  resource_portable: ^3.1.0
+  dart_console: ^4.1.1
+  recase: ^4.1.0
+  archive: ^3.6.1
+  path: ^1.9.0
+  http: ^1.2.2
+
+dev_dependencies:
+  test: ^1.21.0
