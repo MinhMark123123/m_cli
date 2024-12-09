@@ -11,6 +11,7 @@ environment:
 dependencies:
   m_cli_core: ^0.0.2
   args: ^2.6.0
+  shared_preferences: ^2.3.3
 
 dev_dependencies:
   test: ^1.21.0

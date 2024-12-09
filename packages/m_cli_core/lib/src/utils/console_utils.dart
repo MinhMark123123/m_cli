@@ -86,6 +86,17 @@ class ConsoleUtils {
     // Return the user's input.
     return userInput;
   }
+
+  bool echoConfirmSelection({
+    required String message,
+    String confirmHint = "(y/n)",
+    List<String>? keysConfirm,
+  }) {
+    final userKeysConfirm = keysConfirm ?? ["y", "yes"];
+    final userInput = echoAndRead(messageOut: message);
+    if (userKeysConfirm.contains(userInput?.toLowerCase())) return true;
+    return false;
+  }
 }
 
 ///ANSI pens Bold red for errors.
