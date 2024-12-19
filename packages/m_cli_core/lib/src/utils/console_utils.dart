@@ -6,7 +6,7 @@ import 'package:dart_console/dart_console.dart';
 /// Enum to define different types of text output for the console.
 enum TextType {
   /// Represents debug messages, typically styled in green.
-  debug,
+  success,
 
   /// Represents warning messages, typically styled in yellow.
   warn,
@@ -19,7 +19,7 @@ enum TextType {
 
   /// Returns the [AnsiPen] used to colorize text based on the [TextType].
   AnsiPen get textPain => switch (this) {
-        TextType.debug => green,
+        TextType.success => green,
         TextType.warn => yellow,
         TextType.error => red,
         TextType.normal => white,
@@ -70,6 +70,7 @@ class ConsoleUtils {
   static String? echoAndRead({
     TextType type = TextType.normal,
     required String messageOut,
+    bool allowNullOrEmptyInput = false,
   }) {
     // Print the prompt message.
     echoText(message: messageOut);
@@ -78,13 +79,119 @@ class ConsoleUtils {
     String? userInput = stdin.readLineSync();
 
     // If the input is null or empty, show a warning and repeat the prompt.
-    if (userInput == null || userInput.isEmpty) {
+    if (allowNullOrEmptyInput == false &&
+        (userInput == null || userInput.isEmpty)) {
       echoLine(type: TextType.warn, messageLine: "Please input a value!");
       return echoAndRead(messageOut: messageOut);
     }
 
     // Return the user's input.
     return userInput;
+  }
+
+  static bool echoConfirmSelection({
+    required String message,
+    String confirmHint = "(y/n)",
+    List<String>? keysConfirm,
+  }) {
+    final userKeysConfirm = keysConfirm ?? ["y", "yes"];
+    final userInput = echoAndRead(messageOut: message);
+    if (userKeysConfirm.contains(userInput?.toLowerCase())) return true;
+    return false;
+  }
+
+  static List<String> echoListOption({
+    required String message,
+    required List<String> options,
+    bool isMultipleChoice = true,
+  }) {
+    final console = Console();
+    console.writeLine("$message${options.map((e) => "\n").join()}");
+    bool isPressedEnter = false;
+    int selectedIndex = 0;
+    _echoOptions(
+      console: console,
+      options: options,
+      selectedIndex: selectedIndex,
+    );
+    console.rawMode = true;
+    while (!isPressedEnter) {
+      final key = console.readKey();
+      if (key.isControl) {
+        if (key.controlChar == ControlCharacter.enter) {
+          isPressedEnter = true;
+        } else if (key.controlChar == ControlCharacter.arrowUp) {
+          selectedIndex =
+              selectedIndex > 0 ? selectedIndex - 1 : options.length - 1;
+        } else if (key.controlChar == ControlCharacter.arrowDown) {
+          selectedIndex =
+              selectedIndex < options.length - 1 ? selectedIndex + 1 : 0;
+        }
+        _echoOptions(
+          console: console,
+          options: options,
+          selectedIndex: selectedIndex,
+        );
+      } else if (key.char == " ") {
+        if (selectedIndex >= 0 && selectedIndex < options.length) {
+          final prefix = options[selectedIndex].startsWith('* ') ? '' : '* ';
+          if (!isMultipleChoice) {
+            options = options
+                .map(
+                  (option) => option.replaceAll('* ', ''),
+                )
+                .toList();
+          }
+          options[selectedIndex] =
+              '$prefix${options[selectedIndex].replaceAll('* ', '')}';
+        }
+        _echoOptions(
+          console: console,
+          options: options,
+          selectedIndex: selectedIndex,
+        );
+      }
+    }
+    console.rawMode = false;
+    final selectedOptions = options
+        .where((option) => option.startsWith('* '))
+        .map((option) => option.replaceAll('* ', ''))
+        .toList();
+    console.writeLine('Selected options: ${selectedOptions.join(', ')}');
+    return selectedOptions;
+  }
+
+  static void _echoOptions({
+    required Console console,
+    required List<String> options,
+    required int selectedIndex,
+  }) {
+    _clearOptionsListEcho(console, options, selectedIndex);
+    for (int i = 0; i < options.length; i++) {
+      var text = options[i];
+      if (text.startsWith("* ")) {
+        text = text.replaceAll('* ', '');
+        text = green('* $text');
+      } else {
+        text = "  $text";
+      }
+      if (i == selectedIndex) {
+        console.write(' > $text\n');
+      } else {
+        console.write('   $text\n');
+      }
+    }
+  }
+
+  static void _clearOptionsListEcho(
+    Console console,
+    List<String> options,
+    int selectedIndex,
+  ) {
+    for (int i = 0; i < options.length; i++) {
+      console.cursorUp();
+      console.eraseLine();
+    }
   }
 }
 
