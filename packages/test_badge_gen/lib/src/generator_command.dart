@@ -1,5 +1,6 @@
 import 'package:m_cli_core/m_cli_core.dart';
 import 'package:test_badge_gen/src/test_badge_manager.dart';
+
 /// A command to generate a test coverage badge in SVG format from an `lcov.info` file.
 ///
 /// The `GeneratorCommand` reads an `lcov.info` file and generates a badge (SVG file)
@@ -25,8 +26,9 @@ import 'package:test_badge_gen/src/test_badge_manager.dart';
 class GeneratorCommand extends BaseCommand {
   /// Default file name for the output badge when no `--out` is specified.
   static String defaultSVGFile = "coverage_badge.svg";
+
   ///default constructor
-  GeneratorCommand():super();
+  GeneratorCommand() : super();
   @override
   List<CommandOption> get provideOptions => [
         CommandOption(
@@ -44,7 +46,8 @@ class GeneratorCommand extends BaseCommand {
       ];
 
   @override
-  String get description => "Generate a test coverage badge (SVG format) from an lcov.info file.";
+  String get description =>
+      "Generate a test coverage badge (SVG format) from an lcov.info file.";
 
   @override
   String get name => "gen";
