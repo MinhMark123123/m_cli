@@ -1,2 +1,3 @@
-library test_badge_gen;
+library;
+
 export 'src/generator_command.dart';

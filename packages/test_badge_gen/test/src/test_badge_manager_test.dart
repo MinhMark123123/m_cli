@@ -29,7 +29,7 @@ void main() {
     if (inputFile.existsSync()) {
       inputFile.deleteSync();
     }
-    if(dir.existsSync()){
+    if (dir.existsSync()) {
       dir.deleteSync();
     }
   });
